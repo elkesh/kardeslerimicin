@@ -1105,8 +1105,10 @@ class backspacex:
          if a==0 and i==13:
             i=0
             rang=rang+50           
-      
-      if game_point-a<0:
+         if rang == 700:
+            break
+         
+      if game_point-a<0 or rang==700:
          c=np.random.randint(4)
          if c==0:
             if all(img[y+50,x]==[255,255,255]):
