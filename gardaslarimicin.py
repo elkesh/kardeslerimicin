@@ -5,7 +5,7 @@ class backspacex:
       self.name = userName # your object will be given a user name, i.e. your group name
       self.maxStep = maxStepSize # maximum length of the returned path from run()
       self.maxTime = maxTime # run() is supposed to return before maxTime
-      
+      self.clrs = clrDictionary
    def run(self, img, info):
       myinfo = info[self.name]
         # get current location 
@@ -1104,50 +1104,84 @@ class backspacex:
            
          if a==0 and i==13:
             i=0
-            rang=rang+50           
+            rang=rang+50
          if rang == 700:
             break
-         
-      if game_point-a<0 or rang==700:
-         c=np.random.randint(4)
-         if c==0:
-            if all(img[y+50,x]==[255,255,255]):
-               goal=[[y,x+1],[y+50,x+1]]
-            elif all(img[y+50,x]==[1,1,1]):
-               goal=[[y,x+1],[y+50,x+1]]
-            elif all(img[y+50,x]==[0,0,0]):
-               goal=[[y,x+1],[y+50,x+1]]
-            else:
-               goal=[[y,x+50],[y+1,x+50]]
+      puan = 0
+      check=0
+      renkler = tuple(self.clrs.values())
+      if (game_point-a)<0 or (rang>=700) :
+        goal=[[y,x+1],[y+1,x+1]]  
+        a=0
+        if rang<700 :
+          kisa_islemler1 = [0,50,-50,100,-100]
+          for sayi1 in kisa_islemler1:
+              if y+sayi1<50 or y+sayi1>700 : continue
+              for sayi2 in kisa_islemler1:
+                  if x+sayi2<50 or x+sayi2>700 : continue
+                  if sayi1==0 and sayi2==0 : continue
+                  if sayi1==100 and sayi2==100 : continue
+                  if sayi1==100 and sayi2==-100 : continue
+                  if sayi1==-100 and sayi2==100 : continue
+                  if sayi1==-100 and sayi2==-100 : continue
+                  if sayi1==100 and sayi2==50 : continue
+                  if sayi1==100 and sayi2==-50 : continue
+                  if sayi1==50 and sayi2==100 : continue
+                  if sayi1==50 and sayi2==-100 : continue
+                  if sayi1==-100 and sayi2==50 : continue
+                  if sayi1==-100 and sayi2==-50 : continue
+                  if sayi1==-50 and sayi2==100 : continue
+                  if sayi1==-50 and sayi2==-100 : continue
+                  if tuple(img[y+sayi1, x+sayi2]) == (255,255,255):continue
+                  if tuple(img[y+sayi1, x+sayi2]) == (1,1,1):continue
+                  for i in range(len(renkler)):
+                      if tuple(img[y+sayi1, x+sayi2]) == renkler[i][0]:
+                          puan=renkler[i][1]
+                          if puan>a and puan<=game_point:
+                              a=puan
+                              goal=[[y+sayi1, x],[y+sayi1,x+sayi2]]
+                              check=1
+                          break
+        if rang>=700 or check==0 :
+            c=np.random.randint(4)
+            if c==0:
+                if all(img[y+50,x]==[255,255,255]):
+                    goal=[[y,x+1],[y+50,x+1]]
+                elif all(img[y+50,x]==[1,1,1]):
+                    goal=[[y,x+1],[y+50,x+1]]
+                elif all(img[y+50,x]==[0,0,0]):
+                    goal=[[y,x+1],[y+50,x+1]]
+                else:
+                    goal=[[y,x+50],[y+1,x+50]]
             
-         elif c==1:
-            if all(img[y-50,x]==[255,255,255]):
-               goal=[[y,x+1],[y-50,x+1]]
-            elif all(img[y-50,x]==[1,1,1]):
-               goal=[[y,x+1],[y-50,x+1]]
-            elif all(img[y-50,x]==[0,0,0]):
-               goal=[[y,x+1],[y-50,x+1]]
-            else:
-               goal=[[y,x-50],[y+1,x-50]]
+            elif c==1:
+                if all(img[y-50,x]==[255,255,255]):
+                    goal=[[y,x+1],[y-50,x+1]]
+                elif all(img[y-50,x]==[1,1,1]):
+                    goal=[[y,x+1],[y-50,x+1]]
+                elif all(img[y-50,x]==[0,0,0]):
+                    goal=[[y,x+1],[y-50,x+1]]
+                else:
+                    goal=[[y,x-50],[y+1,x-50]]
             
-         elif c==2:
-            if all(img[y,x-50]==[255,255,255]):
-               goal=[[y,x-50],[y+1,x-50]]
-            elif all(img[y,x-50]==[1,1,1]):
-               goal=[[y,x-50],[y+1,x-50]]
-            elif all(img[y,x-50]==[0,0,0]):
-               goal=[[y,x-50],[y+1,x-50]]
-            else:
-               goal=[[y,x+1],[y+50,x+1]]
+            elif c==2:
+                if all(img[y,x-50]==[255,255,255]):
+                    goal=[[y,x-50],[y+1,x-50]]
+                elif all(img[y,x-50]==[1,1,1]):
+                    goal=[[y,x-50],[y+1,x-50]]
+                elif all(img[y,x-50]==[0,0,0]):
+                    goal=[[y,x-50],[y+1,x-50]]
+                else:
+                    goal=[[y,x+1],[y+50,x+1]]
                
-         elif c==3:
-            if all(img[y,x+50]==[255,255,255]):
-               goal=[[y,x+50],[y+1,x+50]]
-            elif all(img[y,x+50]==[1,1,1]):
-               goal=[[y,x+50],[y+1,x+50]]
-            elif all(img[y,x+50]==[0,0,0]):
-               goal=[[y,x+50],[y+1,x+50]]
-            else:
-               goal=[[y,x+1],[y-50,x+1]]
+            elif c==3:
+                if all(img[y,x+50]==[255,255,255]):
+                    goal=[[y,x+50],[y+1,x+50]]
+                elif all(img[y,x+50]==[1,1,1]):
+                    goal=[[y,x+50],[y+1,x+50]]
+                elif all(img[y,x+50]==[0,0,0]):
+                    goal=[[y,x+50],[y+1,x+50]]
+                else:
+                    goal=[[y,x+1],[y-50,x+1]]
                
       return goal
