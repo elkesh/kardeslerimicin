@@ -1210,6 +1210,7 @@ class backspacex:
          if goal==0:
             check=0
       if rang>=700 or check==0 :
+         kisa_islemler1 = [0,50,-50,100,-100]
          chaos=[]
          for sayi1 in kisa_islemler1:
             if y+sayi1<50 or y+sayi1>700 : continue
