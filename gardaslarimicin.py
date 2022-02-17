@@ -1208,7 +1208,7 @@ class backspacex:
                            goal=[[y+sayi1, x],[y+sayi1,x+sayi2]]
                         break
          if goal==0:
-             check=0
+            check=0
       if rang>=700 or check==0 :
          chaos=[]
          for sayi1 in kisa_islemler1:
