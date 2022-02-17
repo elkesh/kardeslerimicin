@@ -1,13 +1,8 @@
 import numpy as np
-#import time
 class backspacex:
    def __init__(self, userName, clrDictionary, maxStepSize, maxTime):
       self.name = userName # your object will be given a user name, i.e. your group name
-      #self.maxStep = maxStepSize # maximum length of the returned path from run()
-      #self.maxTime = maxTime # run() is supposed to return before maxTime
    def run(self, img, info):
-      #myinfo = info[self.name]
-        # get current location 
       loc, game_point = info[self.name]
       y,x = loc # get current y,x coordinates
       a=0
@@ -1235,6 +1230,8 @@ class backspacex:
                if sayi1==-50 and sayi2==-100 : continue
                if tuple(img[y+sayi1, x+sayi2]) == (255,255,255):continue
                if tuple(img[y+sayi1, x+sayi2]) == (1,1,1):
+                  chaos.append([[y+sayi1, x],[y+sayi1,x+sayi2]])
+               elif tuple(img[y+sayi1, x+sayi2]) == (0,0,0):
                   chaos.append([[y+sayi1, x],[y+sayi1,x+sayi2]])
          len_chaos=len(chaos)  
          if len_chaos!=0:
