@@ -1198,10 +1198,10 @@ class backspacex:
                   if sayi1==-100 and sayi2==-50 : continue
                   if sayi1==-50 and sayi2==100 : continue
                   if sayi1==-50 and sayi2==-100 : continue
-                  if tuple(img[y+sayi1, x+sayi2]) == (255,255,255):continue
-                  if tuple(img[y+sayi1, x+sayi2]) == (1,1,1):continue
+                  if all(img[y+sayi1, x+sayi2] == [255,255,255]):continue
+                  if all(img[y+sayi1, x+sayi2] == [1,1,1]):continue
                   for i in range(len(renkler)):
-                     if tuple(img[y+sayi1, x+sayi2]) == renkler[i][0]:
+                     if (tuple(img[y+sayi1, x+sayi2]) == renkler[i][0]):
                         colorpoint=renkler[i][1]
                         if colorpoint>a and colorpoint<=game_point:
                            a=colorpoint
@@ -1228,10 +1228,10 @@ class backspacex:
                if sayi1==-100 and sayi2==-50 : continue
                if sayi1==-50 and sayi2==100 : continue
                if sayi1==-50 and sayi2==-100 : continue
-               if tuple(img[y+sayi1, x+sayi2]) == (255,255,255):continue
-               if tuple(img[y+sayi1, x+sayi2]) == (1,1,1):
+               if all(img[y+sayi1, x+sayi2] == [255,255,255]):continue
+               if all(img[y+sayi1, x+sayi2] == [1,1,1]):
                   chaos.append([[y+sayi1, x],[y+sayi1,x+sayi2]])
-               elif tuple(img[y+sayi1, x+sayi2]) == (0,0,0):
+               elif all(img[y+sayi1, x+sayi2]== [0,0,0]):
                   chaos.append([[y+sayi1, x],[y+sayi1,x+sayi2]])
          len_chaos=len(chaos)  
          if len_chaos!=0:
