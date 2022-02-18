@@ -256,7 +256,7 @@ class backspacex:
                   goal=[[y,x-1],[y-rang,x-1]]
                
          elif i==3:
-            if x+rang>750 or y-rang<0:
+            if x+rang>=750 or y-rang<0:
                continue
             if all(img[y-rang,x+rang]==[255,255,255]):
                colorpoint=0
@@ -350,7 +350,7 @@ class backspacex:
                
               
          elif i==4:
-               if x+rang>750:
+               if x+rang>=750:
                   continue
                if all(img[y,x+rang]==[255,255,255]):
                   colorpoint=0
@@ -441,7 +441,7 @@ class backspacex:
                      goal=[[y,x+rang],[y+1,x+rang]]
                
          elif i==5:
-               if (x+rang>750) or (y+rang>750):
+               if (x+rang>=750) or (y+rang>=750):
                   continue
                if all(img[y+rang,x+rang]==[255,255,255]):
                   colorpoint=0
@@ -532,7 +532,7 @@ class backspacex:
                      goal=[[y,x+rang],[y+rang,x+rang]]        
             
          elif i==6:
-            if y+rang>750:
+            if y+rang>=750:
                continue
             if all(img[y+rang,x]==[255,255,255]):
                colorpoint=0
@@ -623,7 +623,7 @@ class backspacex:
                   goal=[[y,x-1],[y+rang,x-1]] 
                
          elif i==7:
-            if y+rang>750 or x-rang<0:
+            if y+rang>=750 or x-rang<0:
                continue
             if all(img[y+rang,x-rang]==[255,255,255]):
                colorpoint=0
@@ -896,7 +896,7 @@ class backspacex:
                   goal=[[y,x-1],[y-rang-50,x-1]]
             
          elif i==10:
-            if x+rang+50>750:
+            if x+rang+50>=750:
                continue
             if all(img[y,x+rang+50]==[255,255,255]):
                colorpoint=0
@@ -987,7 +987,7 @@ class backspacex:
                   goal=[[y,x+rang+50],[y+1,x+rang+50]]
             
          elif i==11:
-            if y+rang+50>750:
+            if y+rang+50>=750:
                continue
             if all(img[y+rang+50,x]==[255,255,255]):
                colorpoint=0
